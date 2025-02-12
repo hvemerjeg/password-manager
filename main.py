@@ -9,33 +9,21 @@ import passwordmanager
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--database', required=False)
-    parser.add_argument('--passfile', required=False)
+    parser.add_argument('--encrypt', help='Encrypt a new password to store it in the database', action='store_true')
+    parser.add_argument('--decrypt', help='Decrypt a password from the database', action='store_true')
+    parser.add_argument('--update-master-key', help='Change master key password and password file', action='store_true')
+    parser.add_argument('--list-services', help='List services for which password exist (google, facebook, etc.)', action='store_true')
+    parser.add_argument('--update', help='Update a password for a specific service', action='store_true')
+    parser.add_argument('--delete', help='''Delete a password. The password will be held in a different table for recovery.
+                        Will be eliminated after 30 days''', action='store_true')
+    parser.add_argument('--recover', help='Recover a deleted password. Passwords are held in a different table for decovery for 30 days', action='store_true')
+    parser.add_argument('--database', help='Database file with passwords. File extension needs to end in pdbm')
+    parser.add_argument('--passfile', help='''Passfile required (besides the password) to decrypt and encrypt database.
+                        This file is the 'something you have' factor. File extension needs to end in pdbmk''')
+    parser.add_argument('--new-database', help='''Create a new database file to save your passwords.
+    Provide only the path to the directory without filename''', action='store_true')
+    parser.add_argument('--service', help='The service related to the password (google, facebook, etc.)')
 
     args = parser.parse_args()
-    if args.database and args.passfile:
-        option = input('1)Get password\n2) Save new password\n3)Update a password\n4)Update master key\n5)Delete a password\n6)Recover a password\n')
-        if option == '1':
-            pass
-        elif option == '2':
-            pass
-        elif option == '3':
-            pass
-        elif option == '4':
-            pass
-        elif option == '5':
-            pass
-        elif option == '6':
-            pass
-        else:
-            sys.stderr.write(f'Unrecognized option: {option}\n')
-    else:
-        option = input('Do you want to create a new database? (Y or N): ').upper()
-        if option ==  'Y':
-            pass
-        elif option == 'N':
-            pass
-        else:
-            sys.stderr.write(f'Unrecognized option: {option}\n')
 if __name__ == '__main__':
     main()
