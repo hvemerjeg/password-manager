@@ -5,7 +5,10 @@ import sys
 import logging
 import argparse
 
-import passwordmanager
+from passwordmanager import databaseinit, passwordgenerator, passwordmanager
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 def main():
 
@@ -42,8 +45,15 @@ def main():
         exit(1)
 
     if args.new_database:
-        if not (args.passfile or args.database):
+        if not (args.passfile and args.database):
             flagNeedsflag('--new-database', '--passfile', '--database')
+        if not args.passfile.endswith('.pdbmk'):
+            sys.stderr.write(f'File extension of passfile needs to end in .pdbmk\n')
+            exit(1)
+        if not args.database.endswith('.pdbm'):
+            sys.stderr.write(f'File extension of databse needs to end in .pdbm\n')
+            exit(1)
+        password_manager = databaseinit.DatabaseInit().initDatabase(args.database)
 
 if __name__ == '__main__':
     main()
