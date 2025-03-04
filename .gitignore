@@ -173,3 +173,5 @@ notes.md
 *.db
 test.py
 *.txt
+*.pdbm
+*.pdbmk
