@@ -1,3 +1,3 @@
-from . import passwordgenerator
-from . import passwordmanager
-from . import databaseinit
+from .passwordmanager import PasswordManager
+from .passwordgenerator import KeyGenerator
+from .databaseinit import DatabaseInitialization

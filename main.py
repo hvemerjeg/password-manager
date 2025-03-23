@@ -53,7 +53,7 @@ def main():
         if not args.database.endswith('.pdbm'):
             sys.stderr.write(f'File extension of databse needs to end in .pdbm\n')
             exit(1)
-        password_manager = databaseinit.DatabaseInit().initDatabase(args.database)
+        password_manager = databaseinit.DatabaseInitialization(database_name=args.database).initDatabase()
 
 if __name__ == '__main__':
     main()
