@@ -1,11 +1,11 @@
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
-import logging
 import sys
 import sqlite3
 import os
+import logging
 
+logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
 
 class PasswordManager:
     def __init__(self, master_key:str, filename=None):
