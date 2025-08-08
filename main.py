@@ -5,7 +5,8 @@ import sys
 import logging
 import argparse
 
-from passwordmanager import DatabaseInitialization, PasswordManager, KeyGenerator
+from passwordmanager import PasswordManager, KeyGenerator
+from utils import initFiles
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.DEBUG)
@@ -52,7 +53,8 @@ def main():
         if not args.database.endswith(".pdbm"):
             sys.stderr.write(f"File extension of databse needs to end in .pdbm\n")
             exit(1)
-        password_manager = DatabaseInitialization(database_name=args.database).initDatabase()
+        initFiles(args.database)
+        initFiles(args.passfile)
 
 if __name__ == "__main__":
     main()
